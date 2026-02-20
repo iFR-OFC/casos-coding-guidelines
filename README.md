@@ -1,8 +1,8 @@
 <!--
-# SPDX-FileCopyrightText: 2025 The MathWorks, Inc. as MATLAB Coding Guidelines
-# SPDX-FileCopyrightText: Adapted 2026 by Torbjørn Cunis <tcunis@ifr.uni-stuttgart.de>
-#
-# SPDX-License-Identifier: CC-BY-4.0
+SPDX-FileCopyrightText: 2025 The MathWorks, Inc. as MATLAB Coding Guidelines
+SPDX-FileCopyrightText: Adapted 2026 by Torbjørn Cunis <tcunis@ifr.uni-stuttgart.de>
+
+SPDX-License-Identifier: CC-BY-4.0
 -->
 
 # CaΣoS Coding Guidelines
@@ -42,3 +42,4 @@ You may use the guidelines document and the related codeAnalyzerConfiguration.js
 <!--
 % SPDX-SnippetEnd
 -->
+
