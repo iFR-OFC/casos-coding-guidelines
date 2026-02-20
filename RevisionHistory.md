@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: CC-BY-4.0
 -->
 
-CaΣoS Coding Guidelines - Revision History
+# CaΣoS Coding Guidelines - Revision History
 
 based on MATLAB Coding Guidelines, Version 1.0 - 2025/09/17
   * Initial version with initial set of Rules and Best Practices
