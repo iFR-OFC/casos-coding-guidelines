@@ -5,6 +5,8 @@
 # SPDX-License-Identifier: CC-BY-4.0
 -->
 
+# Security Policy
+
 This repository is part of CaΣoS. To report potential security vulnerabilities, please go to https://github.com/ifr-ofc/casos#security-ov-file.
 
 ----
