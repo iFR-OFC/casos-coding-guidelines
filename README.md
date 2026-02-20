@@ -30,9 +30,9 @@ You may use the guidelines document and the related codeAnalyzerConfiguration.js
 ----
 
 <!--
-% SPDX-SnippetBegin
-% SPDX-SnippetCopyrightText: 2025 Institute of Flight Mechanics and Controls <tcunis@ifr.uni-stuttgart.de>
-% SPDX-License-Identifier: CC-BY-4.0
+SPDX-SnippetBegin
+SPDX-SnippetCopyrightText: 2025 Institute of Flight Mechanics and Controls <tcunis@ifr.uni-stuttgart.de>
+SPDX-License-Identifier: CC-BY-4.0
 -->
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ifr-ofc/.github/blob/main/assets/logo-casos-inverted.png">
@@ -40,6 +40,7 @@ You may use the guidelines document and the related codeAnalyzerConfiguration.js
   <img width="50%" alt="CaΣoS: A nonlinear sum-of-squares optimization suite">
 </picture>
 <!--
-% SPDX-SnippetEnd
+SPDX-SnippetEnd
 -->
+
 
