@@ -5,6 +5,8 @@
 # SPDX-License-Identifier: CC-BY-4.0
 -->
 
+# Code of Conduct
+
 This repository is part of CaΣoS. For our code of conduct, please go to https://github.com/ifr-ofc/casos#coc-ov-file.
 
 ----
