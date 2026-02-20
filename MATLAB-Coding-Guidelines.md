@@ -1,67 +1,15 @@
-# MATLAB Coding Guidelines
+<!--
+SPDX-FileCopyrightText: 2025 The MathWorks, Inc. as MATLAB Coding Guidelines
+SPDX-FileCopyrightText: Adapted 2026 by Torbjørn Cunis <tcunis@ifr.uni-stuttgart.de>
 
-## Table of Contents
+SPDX-License-Identifier: CC-BY-4.0
+-->
 
-- [Motivations for the Guidelines](#motivations-for-the-guidelines)
-- [Understanding the Coding Guidelines](#understanding-the-coding-guidelines)
-  - [How Guidelines are Documented](#how-guidelines-are-documented)
-  - [Rules](#rules)
-  - [Best Practices](#best-practices)
-  - [Definitions](#definitions)
-- [Naming Guidelines](#naming-guidelines)
-  - [General](#general)
-  - [Variables](#variables)
-  - [Functions](#functions)
-  - [Classes](#classes)
-  - [Namespaces](#namespaces)
-- [Statements and Expressions Guidelines](#statements-and-expressions-guidelines)
-  - [General](#general)
-  - [Variables](#variables)
-  - [MATLAB Types](#matlab-types)
-  - [Expressions](#expressions)
-  - [Loops and Conditionals](#loops-and-conditionals)
-  - [Making Calls to Functions](#making-calls-to-functions)
-  - [Functions to Avoid](#functions-to-avoid)
-- [Formatting Guidelines](#formatting-guidelines)
-  - [Use of Spaces](#use-of-spaces)
-  - [Use of Blank Lines](#use-of-blank-lines)
-  - [Lines in Code Files](#lines-in-code-files)
-- [Code Comments Guidelines](#code-comments-guidelines)
-  - [General](#general)
-  - [Placement and Indentation](#placement-and-indentation)
-- [Function Authoring Guidelines](#function-authoring-guidelines)
-  - [General](#general)
-  - [Inputs](#inputs)
-  - [Outputs](#outputs)
-- [Class Authoring Guidelines](#class-authoring-guidelines)
-  - [General](#general)
-  - [Properties](#properties)
-  - [Methods](#methods)
-- [Error Handling Guidelines](#error-handling-guidelines)
-  - [General](#general)
-  - [Try-Catch](#try-catch)
+# CaΣoS Coding Guidelines
 
-# The Purpose of this Document
+This document describes a set of coding guidelines for the [CaΣoS](https://github.com/ifr-ofc/casos) repositories. These guidelines are largely based on the [MATLAB Coding Guidelines](https://github.com/mathworks/MATLAB-Coding-Guidelines).
 
-As applications get larger and more complex, organizations are adopting more formal coding practices including code reviews, automated builds, and continuous integration. Organizations which develop applications involving teams of people writing MATLAB code want to introduce regularity and consistency in their code bases to enhance the quality of their MATLAB code.
-
-The purpose of this document is to describe a set of MATLAB coding guidelines primarily targeted at teams of MATLAB developers contributing to a large application or library. Adoption of the MATLAB Coding Guidelines is optional. Individuals who write code for their own use *may choose* to adopt these guidelines, but no one is compelled to do so.
-
-Several sources of information were used to develop these guidelines. Those sources included
-
-- Coding guidelines written by members of the MATLAB community
-
-- MathWorks internal coding guidelines
-
-- Internal and external MATLAB codebases
-
-A guideline was favored if there was a broad consensus among these sources.
-
-We expect these guidelines to evolve over time. Changes to the guidelines will be driven by feedback from the MATLAB community and will be reflected in subsequent versions of this document.
-
-# Motivations for the Guidelines
-
-The purpose of the guidelines is to allow organizations to introduce regularity and consistency in large MATLAB code bases. Beyond that, there are several important motivations for using the guidelines. Each of the guidelines is motivated by one or more of the following objectives.
+The purpose of the guidelines is to ensure regularity and consistency in the CaΣoS code bases. Beyond that, there are several important motivations for using the guidelines. Each of the guidelines is motivated by one or more of the following objectives.
 
 - **Readability:** The ease with which code can be read and understood by others, including proper naming, formatting, and structure.
 
@@ -87,7 +35,7 @@ This document contains two types of guidelines – Rules and Best Practices.  *R
 
 - Limit nesting of loop and conditional statements to 5 levels.
 
-*Best Practices* are guidelines that contain recommendations for improving the quality of your MATLAB code. Following them is optional. Most Best Practices cannot be reliably detected by the Code Analyzer. Examples of Best Practices in the guidelines include:
+*Best Practices* are guidelines that contain recommendations for improving the quality of your MATLAB code. Following them is strongly encouraged. Most Best Practices cannot be reliably detected by the Code Analyzer. Examples of Best Practices in the guidelines include:
 
 - Avoid the use of the `eval` function. The `eval` function can lead to unexpected code execution especially when using the function with untrusted user input.
 
