@@ -1,8 +1,8 @@
 <!--
-# SPDX-FileCopyrightText: 2026 Institute of Flight Mechanics and Controls
-# SPDX-FileCopyrightText: Author: Torbjørn Cunis <tcunis@ifr.uni-stuttgart.de>
-#
-# SPDX-License-Identifier: CC-BY-4.0
+SPDX-FileCopyrightText: 2026 Institute of Flight Mechanics and Controls
+SPDX-FileCopyrightText: Author: Torbjørn Cunis <tcunis@ifr.uni-stuttgart.de>
+
+SPDX-License-Identifier: CC-BY-4.0
 -->
 
 # Security Policy
