@@ -35,7 +35,7 @@ This document contains two types of guidelines – Rules and Best Practices.  *R
 
 - Limit nesting of loop and conditional statements to 5 levels.
 
-*Best Practices* are guidelines that contain recommendations for improving the quality of your MATLAB code. Following them is strongly encouraged. Most Best Practices cannot be reliably detected by the Code Analyzer. Examples of Best Practices in the guidelines include:
+*Best Practices* are guidelines that cannot always be enforced or which may be neglected under certain circumstances. Following them is strongly encouraged, however, and exceptions should be justified. Most Best Practices cannot be reliably detected by the Code Analyzer. Examples of Best Practices in the guidelines include:
 
 - Avoid the use of the `eval` function. The `eval` function can lead to unexpected code execution especially when using the function with untrusted user input.
 
@@ -45,7 +45,7 @@ The guidelines are organized into categories -- Naming, Statements & Expressions
 
 ## How Guidelines are Documented
 
-The guidelines have been written to be concise, clear, and unambiguous with the goal of making them easy to describe and apply. Every guideline has a table of information like the example below.
+The guidelines have been written to be concise, clear, and unambiguous with the goal of making them easy to describe and apply. Every guideline has a table of information like the example below. Where the guidelines have been changed from the MATLAB Coding Guidelines, these changes are listed in the *History* section.
 
 **Type:** Rule
 
@@ -58,21 +58,23 @@ The guidelines have been written to be concise, clear, and unambiguous with the 
 **Allowed:**
 
 ```matlab
-totalReactivePowerLoss
-actualRipplePassbandFirstBand
-intervalBetweenLaserTransitions
+nonlinearConstraints
+constraintViolation
+polynomialDynamics
 ```
 
 **Not Allowed:**
 
 ```matlab
-significancePearsonGravitationalCorrelation
-percentROIAreaContainingPositivePixels
+objectiveFunctionNonlinearInSomeVariables
+regionOfAttractionUnderSaturatedFeedback
 ```
 
 **Detection:** Code Analyzer check `naming.variable.maxLength` (R2025a)
 
-**History:** Introduced in Version 1.0
+**History:** 
+- Changed exemplary variables for CaΣoS
+- Introduced in Version 1.0
 
 The table for each guideline has the following fields.
 
@@ -106,7 +108,7 @@ The Code Analyzer check for any Rule can be disabled. Consider the example in th
 
 ## Best Practices
 
-Best Practices are simply recommendations for writing better MATLAB code. The information provided for a Best Practice is similar to that provided for a Rule. Below is an example Best Practice from the Guidelines.
+Best Practices are less strict than Rules. The information provided for a Best Practice is similar to that provided for a Rule. Below is an example Best Practice from the Guidelines.
 
 There are some Best Practices that can (optionally) be detected as Rules by enabling a check in the Code Analyzer. Most of those checks are disabled by default. Information on optional detection, when available, is shown in the **Detection** field of the information for a Best Practice.
 
