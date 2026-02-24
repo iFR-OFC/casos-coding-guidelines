@@ -182,24 +182,24 @@ Several important terms are used in the description of the guidelines. Those ter
 
 ## General
 
-### Language
+### English Language
 
-**Type:** Best Practice
+**Type:** Rule
 
-**Description:** Use a common language, like English, for MATLAB identifiers when writing code that will be read or used by someone whose native language is different than your own.
+**Description:** Use English for all MATLAB identifiers.
 
 **Motivation:**
 
 - Readability: Globally, English is the most common language for programming.
 
-**Recommended:**
+**Allowed:**
 
 ```matlab
 initialValue = 4           % variable name
 transmission = DriveTrain  % class name
 ```
 
-**Not Recommended:**
+**Not Allowed:**
 
 ```matlab
 anfangswert = 4            % Variablenname
@@ -208,7 +208,9 @@ transmission = Transmisia  % numele clasei
 
 **Detection:** Not detectable
 
-**History:** Introduced in Version 1.0
+**History:** 
+- Made English the Rule for CaΣoS
+- Introduced in Version 1.0
 
 ---
 
