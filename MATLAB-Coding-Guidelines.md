@@ -164,7 +164,7 @@ Several important terms are used in the description of the guidelines. Those ter
 
 - `reshape_to_square_matrix`
 
-**camelCase** (also **camelCase**) is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and uses an uppercase letter (A-Z) at the start of each subsequent word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
+**camelCase** (also **lowerCamelCase**) is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and uses an uppercase letter (A-Z) at the start of each subsequent word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
 
 - `totalPowerLoss`
 
@@ -172,7 +172,7 @@ Several important terms are used in the description of the guidelines. Those ter
 
 - `utf8Character`
 
-**PascalCase** (also **PascalCase**) is a casing convention for identifiers (names) where the identifier uses an uppercase letter (A-Z) at the start of each word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
+**PascalCase** (also **UpperCamelCase**) is a casing convention for identifiers (names) where the identifier uses an uppercase letter (A-Z) at the start of each word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
 
 - `KineticEnergy`
 
