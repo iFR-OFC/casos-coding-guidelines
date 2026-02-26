@@ -104,7 +104,7 @@ The MATLAB Code Analyzer can detect violations for a subset of the Rules listed 
 
 This guidelines document is accompanied by a `codeAnalyzerConfiguration.json` file which implements the checks for the set of Rule violations that can be detected. 
 
-The Code Analyzer check for any Rule can be disabled. Consider the example in the screenshot above. There is a Rule that specifies that function names must be lowercase or lowerCamelCase. You can disable this Rule if you want to turn off checking for function name casing. Most Rules can also be configured. In the case above, you could change the options for function name casing to use a different convention (e.g., UpperCamelCase). The Detection field in the Rule information table provides information about which Code Analyzer check is used to detect violations of the Rule. You can then disable or modify the check in your Code Analyzer Configuration file.
+The Code Analyzer check for any Rule can be disabled. Consider the example in the screenshot above. There is a Rule that specifies that function names must be lowercase or camelCase. You can disable this Rule if you want to turn off checking for function name casing. Most Rules can also be configured. In the case above, you could change the options for function name casing to use a different convention (e.g., PascalCase). The Detection field in the Rule information table provides information about which Code Analyzer check is used to detect violations of the Rule. You can then disable or modify the check in your Code Analyzer Configuration file.
 
 ## Best Practices
 
@@ -154,7 +154,15 @@ Several important terms are used in the description of the guidelines. Those ter
 
 - `trial27`
 
-**lowerCamelCase** is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and uses an uppercase letter (A-Z) at the start of each subsequent word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
+**snake_case** is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and all subsequent characters are either lowercase letters, numbers, or an underscore. Consecutive underscores and other special characters are not allowed. Examples include:
+
+- `get_value`
+
+- `index_of_zero`
+
+- `reshape_to_square_matrix`
+
+**camelCase** (also **camelCase**) is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and uses an uppercase letter (A-Z) at the start of each subsequent word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
 
 - `totalPowerLoss`
 
@@ -162,7 +170,7 @@ Several important terms are used in the description of the guidelines. Those ter
 
 - `utf8Character`
 
-**UpperCamelCase** is a casing convention for identifiers (names) where the identifier uses an uppercase letter (A-Z) at the start of each word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
+**PascalCase** (also **PascalCase**) is a casing convention for identifiers (names) where the identifier uses an uppercase letter (A-Z) at the start of each word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
 
 - `KineticEnergy`
 
@@ -177,6 +185,14 @@ Several important terms are used in the description of the guidelines. Those ter
 - `Binverse`
 
 - `C1`
+
+**CONSTANT_CASE** is casing convention for identifiers (names) where the identifier starts with an uppercase letter (A-Z) and all subsequent characters are either uppercase leters, numbers, or an underscore. Consecutive underscores and other special characters are not allowed. Example include:
+
+- `DEFAULT_VALUE`
+
+- `CLASS_NAME`
+
+- `OPTIONAL_INITIALIZATION_VALUE`
 
 # Naming Guidelines
 
@@ -291,16 +307,16 @@ calcPres
 
 ```matlab
 htmlwrite    % for lowercase
-createURL    % for lowerCamelCase
-DNAMatch     % for UpperCamelCase 
+createURL    % for camelCase
+DNAMatch     % for PascalCase 
 ```
 
 **Not Recommended**:
 
 ```matlab
 HTMLwrite    % for lowercase
-createUrl    % for lowerCamelCase
-DnaMatch     % for UpperCamelCase
+createUrl    % for camelCase
+DnaMatch     % for PascalCase
 ```
 
 **Detection**: Not detectable
@@ -406,7 +422,7 @@ color, colorGroup    % pluralization
 
 **Type:** Rule
 
-**Description:** Use lowerCamelCase for descriptive variable names consisting of multiple words. Leadinguppercase can be used for short variable names such as common mathematical symbols.
+**Description:** Use camelCase for descriptive variable names consisting of multiple words. Leadinguppercase can be used for short variable names such as common mathematical symbols.
 
 **Motivation:** 
 
@@ -514,7 +530,7 @@ readData, writeData       % Symmetric functions
 
 **Type:** Rule
 
-**Description:** Use lowerCamelCase or lowercase for function names. For function names that combine multiple words, prefer lowerCamelCase.
+**Description:** Use camelCase or lowercase for function names. For function names that combine multiple words, prefer camelCase.
 
 **Motivation:**
 
@@ -553,7 +569,7 @@ detect_features
 
 **Type:** Best Practice
 
-**Description:** Use UpperCamelCase for the names in Name-Value arguments.
+**Description:** Use PascalCase for the names in Name-Value arguments.
 
 **Motivation:**
 
@@ -602,7 +618,7 @@ pickable
 
 **Type:** Rule
 
-**Description:** Use UpperCamelCase for the names of classes defined in a namespace. If the class is defined in the MATLAB global name space, use the "Function name casing" Rule above.
+**Description:** Use PascalCase for the names of classes defined in a namespace. If the class is defined in the MATLAB global name space, use the "Function name casing" Rule above.
 
 **Motivation:**
 
@@ -650,7 +666,7 @@ receiveCode
 
 **Type:** Rule
 
-**Description:** Use lowerCamelCase or lowercase for method names. For method names that combine multiple words, prefer lowerCamelCase.
+**Description:** Use camelCase or lowercase for method names. For method names that combine multiple words, prefer camelCase.
 
 **Motivation:**
 
@@ -698,7 +714,7 @@ HasEncoder
 
 **Type:** Rule
 
-**Description:** Use UpperCamelCase for property names.
+**Description:** Use PascalCase for property names.
 
 **Motivation:**
 
@@ -722,7 +738,7 @@ Visible
 
 **Type:** Rule
 
-**Description:** Use UpperCamelCase for event names.
+**Description:** Use PascalCase for event names.
 
 **Motivation:**
 
