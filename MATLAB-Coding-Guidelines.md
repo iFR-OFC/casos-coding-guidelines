@@ -1,73 +1,23 @@
-# MATLAB Coding Guidelines
+<!--
+SPDX-FileCopyrightText: 2025 The MathWorks, Inc. as MATLAB Coding Guidelines
+SPDX-FileCopyrightText: Adapted 2026 by Torbjørn Cunis <tcunis@ifr.uni-stuttgart.de>
 
-## Table of Contents
+SPDX-License-Identifier: CC-BY-4.0
+-->
 
-- [Motivations for the Guidelines](#motivations-for-the-guidelines)
-- [Understanding the Coding Guidelines](#understanding-the-coding-guidelines)
-  - [How Guidelines are Documented](#how-guidelines-are-documented)
-  - [Rules](#rules)
-  - [Best Practices](#best-practices)
-  - [Definitions](#definitions)
-- [Naming Guidelines](#naming-guidelines)
-  - [General](#general)
-  - [Variables](#variables)
-  - [Functions](#functions)
-  - [Classes](#classes)
-  - [Namespaces](#namespaces)
-- [Statements and Expressions Guidelines](#statements-and-expressions-guidelines)
-  - [General](#general)
-  - [Variables](#variables)
-  - [MATLAB Types](#matlab-types)
-  - [Expressions](#expressions)
-  - [Loops and Conditionals](#loops-and-conditionals)
-  - [Making Calls to Functions](#making-calls-to-functions)
-  - [Functions to Avoid](#functions-to-avoid)
-- [Formatting Guidelines](#formatting-guidelines)
-  - [Use of Spaces](#use-of-spaces)
-  - [Use of Blank Lines](#use-of-blank-lines)
-  - [Lines in Code Files](#lines-in-code-files)
-- [Code Comments Guidelines](#code-comments-guidelines)
-  - [General](#general)
-  - [Placement and Indentation](#placement-and-indentation)
-- [Function Authoring Guidelines](#function-authoring-guidelines)
-  - [General](#general)
-  - [Inputs](#inputs)
-  - [Outputs](#outputs)
-- [Class Authoring Guidelines](#class-authoring-guidelines)
-  - [General](#general)
-  - [Properties](#properties)
-  - [Methods](#methods)
-- [Error Handling Guidelines](#error-handling-guidelines)
-  - [General](#general)
-  - [Try-Catch](#try-catch)
+# CaΣoS Coding Guidelines
 
-# The Purpose of this Document
+This document describes a set of coding guidelines for the [CaΣoS](https://github.com/ifr-ofc/casos) repositories. These guidelines are largely based on the [MATLAB Coding Guidelines](https://github.com/mathworks/MATLAB-Coding-Guidelines).
 
-As applications get larger and more complex, organizations are adopting more formal coding practices including code reviews, automated builds, and continuous integration. Organizations which develop applications involving teams of people writing MATLAB code want to introduce regularity and consistency in their code bases to enhance the quality of their MATLAB code.
-
-The purpose of this document is to describe a set of MATLAB coding guidelines primarily targeted at teams of MATLAB developers contributing to a large application or library. Adoption of the MATLAB Coding Guidelines is optional. Individuals who write code for their own use *may choose* to adopt these guidelines, but no one is compelled to do so.
-
-Several sources of information were used to develop these guidelines. Those sources included
-
-- Coding guidelines written by members of the MATLAB community
-
-- MathWorks internal coding guidelines
-
-- Internal and external MATLAB codebases
-
-A guideline was favored if there was a broad consensus among these sources.
-
-We expect these guidelines to evolve over time. Changes to the guidelines will be driven by feedback from the MATLAB community and will be reflected in subsequent versions of this document.
-
-# Motivations for the Guidelines
-
-The purpose of the guidelines is to allow organizations to introduce regularity and consistency in large MATLAB code bases. Beyond that, there are several important motivations for using the guidelines. Each of the guidelines is motivated by one or more of the following objectives.
+The purpose of the guidelines is to ensure regularity and consistency in the CaΣoS code bases. Beyond that, there are several important motivations for using the guidelines. Each of the guidelines is motivated by one or more of the following objectives.
 
 - **Readability:** The ease with which code can be read and understood by others, including proper naming, formatting, and structure.
 
 - **Understandability:** The clarity of code in terms of logic, flow, and purpose, making it easy to grasp its function without extensive effort.
 
 - **Maintainability:** The ease with which code can be modified, extended, or debugged over time without introducing errors or unintended behavior.
+
+- **Compatibility:** The degree to which code satisfies the coding guidelines of other relevant projects, thus ensuring consistency between different interfaces.
 
 - **Reusability:** The ability to use code components across different projects or contexts without modification, thereby reducing redundancy and improving developer efficiency.
 
@@ -87,7 +37,7 @@ This document contains two types of guidelines – Rules and Best Practices.  *R
 
 - Limit nesting of loop and conditional statements to 5 levels.
 
-*Best Practices* are guidelines that contain recommendations for improving the quality of your MATLAB code. Following them is optional. Most Best Practices cannot be reliably detected by the Code Analyzer. Examples of Best Practices in the guidelines include:
+*Best Practices* are guidelines that cannot always be enforced or which may be neglected under certain circumstances. Following them is strongly encouraged, however, and exceptions should be justified. Most Best Practices cannot be reliably detected by the Code Analyzer. Examples of Best Practices in the guidelines include:
 
 - Avoid the use of the `eval` function. The `eval` function can lead to unexpected code execution especially when using the function with untrusted user input.
 
@@ -97,7 +47,7 @@ The guidelines are organized into categories -- Naming, Statements & Expressions
 
 ## How Guidelines are Documented
 
-The guidelines have been written to be concise, clear, and unambiguous with the goal of making them easy to describe and apply. Every guideline has a table of information like the example below.
+The guidelines have been written to be concise, clear, and unambiguous with the goal of making them easy to describe and apply. Every guideline has a table of information like the example below. Where the guidelines have been changed from the MATLAB Coding Guidelines, these changes are listed in the *History* section.
 
 **Type:** Rule
 
@@ -110,21 +60,23 @@ The guidelines have been written to be concise, clear, and unambiguous with the 
 **Allowed:**
 
 ```matlab
-totalReactivePowerLoss
-actualRipplePassbandFirstBand
-intervalBetweenLaserTransitions
+nonlinearConstraints
+constraintViolation
+polynomialDynamics
 ```
 
 **Not Allowed:**
 
 ```matlab
-significancePearsonGravitationalCorrelation
-percentROIAreaContainingPositivePixels
+objectiveFunctionNonlinearInSomeVariables
+regionOfAttractionUnderSaturatedFeedback
 ```
 
 **Detection:** Code Analyzer check `naming.variable.maxLength` (R2025a)
 
-**History:** Introduced in Version 1.0
+**History:** 
+- Changed exemplary variables for CaΣoS
+- Introduced in Version 1.0
 
 The table for each guideline has the following fields.
 
@@ -154,11 +106,11 @@ The MATLAB Code Analyzer can detect violations for a subset of the Rules listed 
 
 This guidelines document is accompanied by a `codeAnalyzerConfiguration.json` file which implements the checks for the set of Rule violations that can be detected. 
 
-The Code Analyzer check for any Rule can be disabled. Consider the example in the screenshot above. There is a Rule that specifies that function names must be lowercase or lowerCamelCase. You can disable this Rule if you want to turn off checking for function name casing. Most Rules can also be configured. In the case above, you could change the options for function name casing to use a different convention (e.g., UpperCamelCase). The Detection field in the Rule information table provides information about which Code Analyzer check is used to detect violations of the Rule. You can then disable or modify the check in your Code Analyzer Configuration file.
+The Code Analyzer check for any Rule can be disabled. Consider the example in the screenshot above. There is a Rule that specifies that function names must be lowercase or camelCase. You can disable this Rule if you want to turn off checking for function name casing. Most Rules can also be configured. In the case above, you could change the options for function name casing to use a different convention (e.g., PascalCase). The Detection field in the Rule information table provides information about which Code Analyzer check is used to detect violations of the Rule. You can then disable or modify the check in your Code Analyzer Configuration file.
 
 ## Best Practices
 
-Best Practices are simply recommendations for writing better MATLAB code. The information provided for a Best Practice is similar to that provided for a Rule. Below is an example Best Practice from the Guidelines.
+Best Practices are less strict than Rules. The information provided for a Best Practice is similar to that provided for a Rule. Below is an example Best Practice from the Guidelines.
 
 There are some Best Practices that can (optionally) be detected as Rules by enabling a check in the Code Analyzer. Most of those checks are disabled by default. Information on optional detection, when available, is shown in the **Detection** field of the information for a Best Practice.
 
@@ -204,7 +156,15 @@ Several important terms are used in the description of the guidelines. Those ter
 
 - `trial27`
 
-**lowerCamelCase** is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and uses an uppercase letter (A-Z) at the start of each subsequent word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
+**snake_case** is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and all subsequent characters are either lowercase letters, numbers, or an underscore. Consecutive underscores and other special characters are not allowed. Examples include:
+
+- `get_value`
+
+- `index_of_zero`
+
+- `reshape_to_square_matrix`
+
+**camelCase** (also **lowerCamelCase**) is a casing convention for identifiers (names) where the identifier starts with a lowercase letter (a-z) and uses an uppercase letter (A-Z) at the start of each subsequent word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
 
 - `totalPowerLoss`
 
@@ -212,7 +172,7 @@ Several important terms are used in the description of the guidelines. Those ter
 
 - `utf8Character`
 
-**UpperCamelCase** is a casing convention for identifiers (names) where the identifier uses an uppercase letter (A-Z) at the start of each word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
+**PascalCase** (also **UpperCamelCase**) is a casing convention for identifiers (names) where the identifier uses an uppercase letter (A-Z) at the start of each word. Numbers are allowed after the first letter but underscores and other special characters are not. Examples include:
 
 - `KineticEnergy`
 
@@ -228,28 +188,36 @@ Several important terms are used in the description of the guidelines. Those ter
 
 - `C1`
 
+**CONSTANT_CASE** is casing convention for identifiers (names) where the identifier starts with an uppercase letter (A-Z) and all subsequent characters are either uppercase leters, numbers, or an underscore. Consecutive underscores and other special characters are not allowed. Example include:
+
+- `DEFAULT_VALUE`
+
+- `CLASS_NAME`
+
+- `OPTIONAL_INITIALIZATION_VALUE`
+
 # Naming Guidelines
 
 ## General
 
-### Language
+### English Language
 
-**Type:** Best Practice
+**Type:** Rule
 
-**Description:** Use a common language, like English, for MATLAB identifiers when writing code that will be read or used by someone whose native language is different than your own.
+**Description:** Use English for all MATLAB identifiers.
 
 **Motivation:**
 
 - Readability: Globally, English is the most common language for programming.
 
-**Recommended:**
+**Allowed:**
 
 ```matlab
 initialValue = 4           % variable name
 transmission = DriveTrain  % class name
 ```
 
-**Not Recommended:**
+**Not Allowed:**
 
 ```matlab
 anfangswert = 4            % Variablenname
@@ -258,7 +226,9 @@ transmission = Transmisia  % numele clasei
 
 **Detection:** Not detectable
 
-**History:** Introduced in Version 1.0
+**History:** 
+- Made English the Rule for CaΣoS
+- Introduced in Version 1.0
 
 ---
 
@@ -290,6 +260,56 @@ nextTemp
 **Detection:** Not detectable
 
 **History:** Introduced in Version 1.0
+
+---
+
+### Name length for functions and other programming interface elements
+
+**Type:** Rule
+
+**Description:** Limit the name length of functions, classes, methods, properties, and other elements of a programming interface to <= 32 characters.
+
+**Motivation:**
+
+- Understandability: Limiting identifier length will make it easier for others to review and understand your code.
+
+**Allowed:**
+
+```matlab
+reactivePowerLoss
+inverseTransformDecompression
+optimizeBresenhamConversion
+```
+
+**Not Allowed:**
+
+```matlab
+validateBlockPathForModelBlockNormalModeVisibility
+plotExactRectangularMembraneConstantLineLoad
+```
+
+**Detection:** Code Analyzer checks (R2025a)
+
+- `naming.class.maxLength`
+
+- `naming.function.maxLength`
+
+- `naming.localFunction.maxLength`
+
+- `naming.method.maxLength`
+
+- `naming.nestedFunction.maxLength`
+
+- `naming.property.maxLength`
+
+- `naming.event.maxLength`
+
+- `naming.enumeration.maxLength`
+
+**History:** 
+
+- Moved to *General* for CaΣoS
+- Introduced in Version 1.0
 
 ---
 
@@ -339,16 +359,16 @@ calcPres
 
 ```matlab
 htmlwrite    % for lowercase
-createURL    % for lowerCamelCase
-DNAMatch     % for UpperCamelCase 
+createURL    % for camelCase
+DNAMatch     % for PascalCase 
 ```
 
 **Not Recommended**:
 
 ```matlab
 HTMLwrite    % for lowercase
-createUrl    % for lowerCamelCase
-DnaMatch     % for UpperCamelCase
+createUrl    % for camelCase
+DnaMatch     % for PascalCase
 ```
 
 **Detection**: Not detectable
@@ -454,17 +474,21 @@ color, colorGroup    % pluralization
 
 **Type:** Rule
 
-**Description:** Use lowerCamelCase for descriptive variable names consisting of multiple words. Leadinguppercase can be used for short variable names such as common mathematical symbols.
+**Description:** Use snake_case for descriptive variable names consisting of multiple words. Leadinguppercase can be used for short variable names such as common mathematical symbols.
+
+> [!WARNING]
+> Leadinguppercase may be disallowed in a future version of the coding guidelines.
 
 **Motivation:** 
 
 - Readability: Using a common casing standard can make it easier to distinguish variables from other types of identifiers (e.g., classes).
+- Compatibility: Using snake_case ensures compliance to the Google style guide.
 
 **Allowed:** 
 
 ```matlab
 temperature
-gibbsFreeEnergy
+free_energy
 x = A\b            % A is a matrix
 Binverse
 ```
@@ -472,6 +496,7 @@ Binverse
 **Not Allowed:** 
 
 ```matlab
+gibbsFreeEnergy
 KineticEnergy
 BTransform
 Greenwich_Mean_Time
@@ -479,58 +504,17 @@ Greenwich_Mean_Time
 
 **Detection:** Code Analyzer check `naming.variable.regularExpression` (R2025a)
 
-**History:** Introduced in Version 1.0
+**History:** 
+
+- Changed to snake_case for CaΣoS
+- Introduced in Version 1.0
 
 ---
 
 ## Functions
 
-### Name length for functions and other programming interface elements
-
-**Type:** Rule
-
-**Description:** Limit the name length of functions, classes, methods, properties, and other elements of a programming interface to <= 32 characters.
-
-**Motivation:**
-
-- Understandability: Limiting identifier length will make it easier for others to review and understand your code.
-
-**Allowed:**
-
-```matlab
-reactivePowerLoss
-inverseTransformDecompression
-optimizeBresenhamConversion
-```
-
-**Not Allowed:**
-
-```matlab
-validateBlockPathForModelBlockNormalModeVisibility
-plotExactRectangularMembraneConstantLineLoad
-```
-
-**Detection:** Code Analyzer checks (R2025a)
-
-- `naming.class.maxLength`
-
-- `naming.function.maxLength`
-
-- `naming.localFunction.maxLength`
-
-- `naming.method.maxLength`
-
-- `naming.nestedFunction.maxLength`
-
-- `naming.property.maxLength`
-
-- `naming.event.maxLength`
-
-- `naming.enumeration.maxLength`
-
-**History:** Introduced in Version 1.0
-
----
+> [!INFO]
+> This section concerns functions outside the scope of classes or objects. See [below](#classes) for object and class functions.
 
 ### Function name style
 
@@ -562,7 +546,7 @@ readData, writeData       % Symmetric functions
 
 **Type:** Rule
 
-**Description:** Use lowerCamelCase or lowercase for function names. For function names that combine multiple words, prefer lowerCamelCase.
+**Description:** Use camelCase or lowercase for function names. For function names that combine multiple words, prefer camelCase.
 
 **Motivation:**
 
@@ -601,7 +585,7 @@ detect_features
 
 **Type:** Best Practice
 
-**Description:** Use UpperCamelCase for the names in Name-Value arguments.
+**Description:** Use PascalCase for the names in Name-Value arguments.
 
 **Motivation:**
 
@@ -626,7 +610,7 @@ surf(peaks, FaceColor="interp")
 
 **Type:** Best Practice
 
-**Description:** If a class represents a thing, use a noun or noun phrase in the name (e.g., PrintServer). If a class implements a set of behaviors or capabilities that other classes can obtain via inheritance, such as a mixin class, use an adjective (e.g., Copyable). Do not put "class" in a class name. Do not use special attributes of the class (e.g., Abstract) in the name.
+**Description:** If a class represents a thing, use a noun or noun phrase in the name (e.g., PrintServer). If a class implements a set of behaviors or capabilities that other classes can obtain via inheritance, such as a mixin class, use an adjective (e.g., Copyable). Do not put "class" in a class name. Avoid using special attributes of the class (e.g., Abstract) in the name.
 
 **Motivation:**
 
@@ -636,8 +620,8 @@ surf(peaks, FaceColor="interp")
 
 ```matlab
 PrintQueue
-imageAdapter
-pickable
+ImageAdapter
+Pickable
 ```
 
 **Detection:** Not detectable
@@ -650,31 +634,33 @@ pickable
 
 **Type:** Rule
 
-**Description:** Use UpperCamelCase for the names of classes defined in a namespace. If the class is defined in the MATLAB global name space, use the "Function name casing" Rule above.
+**Description:** Use PascalCase for the names of classes. 
 
 **Motivation:**
 
-- Readability: Using a common casing standard can make it easier to distinguish classes from other identifier types.  Using function name casing in the global name space allows users to call a class constructor like an ordinary function.
+- Readability: Using a common casing standard can make it easier to distinguish classes from other identifier types.  
 
 **Allowed:**
 
 ```matlab
-transmitter.OptionsBase    % in a namespace
-shapes.Polynomial          % in a namespace
-ecgSignal                  % in the global namespace
+transmitter.OptionsBase
+shapes.Polynomial
 ```
 
 **Detection:** Not currently detected
 
-**History:** Introduced in Version 1.0
+**History:** 
+
+- Removed exception of MATLAB global namespace for CaΣoS
+- Introduced in Version 1.0
 
 ---
 
-### Method name style
+### Class and object function name style
 
 **Type:** Best Practice
 
-**Description:** Method names should be either a verb phrase or a noun phrase following the same Best Practice as function names.
+**Description:** Class and object function (method) names should be either a verb phrase or a noun phrase following the same Best Practice as [function names](#function-name-style).
 
 **Motivation:** 
 
@@ -683,9 +669,9 @@ ecgSignal                  % in the global namespace
 **Recommended:**
 
 ```matlab
+set_roll_off
+receive_code
 modulateSignal
-setRollOff
-receiveCode
 ```
 
 **Detection:** Not detectable
@@ -694,15 +680,16 @@ receiveCode
 
 ---
 
-### Method name casing
+### Class function name casing
 
 **Type:** Rule
 
-**Description:** Use lowerCamelCase or lowercase for method names. For method names that combine multiple words, prefer lowerCamelCase.
+**Description:** Use camelCase or lowercase for class function (static method) names. For method names that combine multiple words, prefer camelCase.
 
 **Motivation:**
 
-- Readability: Using a common casing standard can make it easier to identify methods and functions.
+- Readability: Using a common casing standard can make it easier to identify static methods and functions.
+- Understandability: Using a common casing standard with [functions](#function-name-casing) but different from non-static methods allows to distinguish between static and non-static methods and functions.
 
 **Allowed:**
 
@@ -714,7 +701,37 @@ registerDevice
 
 **Detection:** Code Analyzer check `naming.method.casing` (R2025a)
 
-**History:** Introduced in Version 1.0
+**History:** 
+
+- Distinguished between class and object functions for CaΣoS
+- Introduced in Version 1.0
+
+### Object function name casing
+
+**Type:** Rule
+
+**Description:** Use snake_case or lowercase for object function (method) names. For method names that combine multiple words, prefer snake_case.
+
+**Motivation:**
+
+- Readability: Using a common casing standard can make it easier to identify object functions.
+- Understandability: Using a casing standard different from [functions](#function-name-casing) or class functions allows to distinguish between static and non-static methods and functions.
+- Compatibility: Using snake_case makes the interfaces consistent with other APIs that adhere to Google style guides.
+
+**Allowed:**
+
+```matlab
+get_coordinates
+project_to_basis
+register
+```
+
+**Detection:** Code Analyzer check `naming.method.casing` (R2025a)
+
+**History:** 
+
+- Changed to snake_case for object functions in CaΣoS
+- Introduced in Version 1.0
 
 ---
 
@@ -722,7 +739,7 @@ registerDevice
 
 **Type:** Best Practice
 
-**Description:** Use a noun or noun phrase for most property names. Use a verb phrase if a property is a logical value that indicates whether the object does something, or can do something, or has something (e.g., `HasOutputPort`).
+**Description:** Use a noun or noun phrase for most property names. Use a verb phrase if a property is a logical value that indicates whether the object does something, or can do something, or has something (e.g., `hasOutputPort`).
 
 **Motivation:**
 
@@ -731,9 +748,9 @@ registerDevice
 **Recommended:**
 
 ```matlab
-TextBuffer
+text_buffer
+has_encoder
 CodeTable
-HasEncoder
 ```
 
 **Detection:** Not detectable
@@ -746,23 +763,54 @@ HasEncoder
 
 **Type:** Rule
 
-**Description:** Use UpperCamelCase for property names.
+**Description:** Use snake_case or lowercase for non-constant property names. For property names that combine multiple words, prefer snake_case.
 
 **Motivation:**
 
-- Readability: Using a common casing standard can make it easier to identify class properties and distinguish them from other identifier types.
+- Readability: Using a common casing standard can make it easier to distinguish non-constant properties and variables from constant properties.
+- Compatibility: Using snake_case for variables and member fields is the de-facto standard among many style guides.
+
+**Allowed:**
+
+```matlab
+first_element
+list_of_inputs
+visible
+```
+
+**Detection:** Code Analyzer check `naming.property.casing` (R2025a)
+
+**History:** 
+
+- Changed to snake_case for non-constant properties in CaΣoS
+- Introduced in Version 1.0
+
+---
+
+### Constant property name casing
+
+**Type:** Rule
+
+**Description:** Use PascalCase for constant property names.
+
+**Motivation:**
+
+- Readability: Using a common casing standard can make it easier to identify constant class properties and distinguish them from other properties or variables.
 
 **Allowed:**
 
 ```matlab
 StartTime
 RelativeTolerance
-Visible
+DefaultValue
 ```
 
 **Detection:** Code Analyzer check `naming.property.casing` (R2025a)
 
-**History:** Introduced in Version 1.0
+**History:** 
+
+- Distinguished between constant and non-constant properties for CaΣoS
+- Introduced in Version 1.0
 
 ---
 
@@ -770,7 +818,7 @@ Visible
 
 **Type:** Rule
 
-**Description:** Use UpperCamelCase for event names.
+**Description:** Use PascalCase for event names.
 
 **Motivation:**
 
@@ -793,7 +841,7 @@ DeviceAdded
 
 ### Namespace name casing
 
-**Type:** Best Practice
+**Type:** Rule
 
 **Description:** Use short, lowercase names for namespaces.
 
@@ -811,7 +859,10 @@ astrometry.catalogue
 
 **Detection:** Not detectable
 
-**History:** Introduced in Version 1.0
+**History:** 
+
+- Changed to Rule for CaΣoS
+- Introduced in Version 1.0
 
 ---
 
@@ -840,6 +891,99 @@ learning.learningFindClusters
 **Detection:** Not detectable
 
 **History:** Introduced in Version 1.0
+
+---
+
+## Enumerations
+
+### Enumeration value name style
+
+**Type:** Rule
+
+**Description:** Use words of the same category (noun, verb, adjective) for all values of an enumeration.
+
+**Motivation:**
+
+- Understandibility: Using words of the same category allows to better understand the alternative values of an enumeration and their differences.
+
+**Not Allowed:**
+
+```matlab
+enumeration
+    SNAIL       % noun
+    RUN         % verb
+    LARGE       % adjective
+end
+```
+
+**Detection:** Not currently detected
+
+**History:** Added to Version 1.0 for CaΣoS
+
+---
+
+### Enumeration value name casing
+
+**Type:** Rule
+
+**Description** Use CONSTANT_CASE for enumeration values.
+
+**Motivation:**
+
+- Readibility: Using a common casing standard allows to distinguish the values of an enumeration from other variables or properties.
+
+**Detection:** Code Analyzer will check `naming.enumeration.casing` (R2025a)
+
+**History:** Added to Version 1.0 for CaΣoS
+
+---
+
+## Structs
+
+### Struct field name style
+
+**Type:** Best Practice
+
+**Description:** Use a noun, a noun phrase, or a verb phrase following the same Best Practice as [property names](#property-name-style).
+
+**Motivation:**
+
+- Understandability: Well-chosen struct field names are unambiguous and tell the user of the struct what information the field contains.
+
+**Recommended:**
+
+```matlab
+text_buffer
+has_encoder
+```
+
+**Detection:** Not detectable
+
+**History:** Added to Version 1.0 for CaΣoS
+
+---
+
+### Struct field name casing
+
+**Type:** Best Practice
+
+**Description:** Use snake_case or lowercase for struct fields names. For property names that combine multiple words, prefer snake_case. In some cases, use of PascalCase may be permissible.
+
+**Motivation:**
+
+- Readability: Using a common casing standard can make it easier to distinguish struct fields from constant properties or enumeration values.
+
+**Allowed:**
+
+```matlab
+first_element
+list_of_inputs
+visible
+```
+
+**Detection:** Not detectable
+
+**History:** Added to Version 1.0 for CaΣoS
 
 ---
 

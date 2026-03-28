@@ -5,9 +5,9 @@ SPDX-FileCopyrightText: Author: Torbjørn Cunis <tcunis@ifr.uni-stuttgart.de>
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-# Security Policy
+# Code of Conduct
 
-This repository is part of CaΣoS. To report potential security vulnerabilities, please go to https://github.com/ifr-ofc/casos#security-ov-file.
+This repository is part of CaΣoS. For our code of conduct, please go to https://github.com/ifr-ofc/casos#coc-ov-file.
 
 ----
 
